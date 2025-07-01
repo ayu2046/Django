@@ -1,0 +1,124 @@
+{% extends "layout.html" %}
+
+{% block title %}
+YTweet - Home
+{% endblock %}
+
+{% block content %}
+<style>
+  .tweet-form-wrapper {
+    max-width: 450px;
+    margin: 40px auto;
+    padding: 30px;
+    background:transparent;
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    color: white;
+    box-shadow: 0 0 12px rgba(202, 207, 207, 0.1);
+  }
+
+  .tweet-form-wrapper h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #e3e6e6;
+  }
+
+  .tweet-form-wrapper .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .tweet-form-wrapper label {
+    font-size: 1rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .tweet-form-wrapper input,
+  .tweet-form-wrapper textarea {
+    background-color: #1c1c1c;
+    color: white;
+    border: none;
+    border-radius: 0.7rem;
+    padding: 0.6rem;
+    width: 100%;
+  }
+
+  .tweet-form-wrapper input:focus,
+  .tweet-form-wrapper textarea:focus {
+    border: 1px solid #00ffff;
+    outline: none;
+    background-color: #222;
+  }
+
+  .tweet-form-wrapper button {
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+
+  .tweet-form-wrapper .back-link {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: #e9e8eb;
+    text-decoration: none;
+  }
+
+  .tweet-form-wrapper .back-link:hover {
+    color: #0a84e8;
+  }
+
+#photo-clear_id {
+display: none;
+}
+
+label[for="photo-clear_id"] {
+  display: none;
+}
+
+#id_photo{
+    margin-top: 0.5rem;
+}
+
+</style>
+
+<div class="tweet-form-wrapper">
+  <h2>
+    {% if form.instance.pk %}
+      Edit Your Tweet!
+    {% else %}
+      Create Tweet
+    {% endif %}
+  </h2>
+
+  <form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  {% for field in form %}
+    {% if field.name != "clear" %}
+      <div class="{% if field.field.widget.input_type == 'checkbox' %}form-check{% else %}form-group{% endif %}">
+        {{ field.label_tag }}
+        {{ field }}
+        {% for error in field.errors %}
+          <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  {# Ensure this block does not render anything visible #}
+  {% if form.clear %}
+    <div style="display: none;">
+      {{ form.clear.as_widget }}
+    </div>
+  {% endif %}
+
+  <button class="btn btn-warning" type="submit">
+    Submit
+  </button>
+</form>
+
+  <a href="{% url 'YTweet:tweet_list' %}" class="back-link"><u>Back to Tweet list</u></a>
+</div>
+{% endblock %}

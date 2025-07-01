@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}
+YTweet - Home
+{% endblock %}
+
+{% block content %}
+<style>
+
+body {
+  background-color: rgb(5, 0, 39);
+  overflow-y: auto;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.card:hover {
+  transform:scale(1.09);
+  transition: transform 0.5s ease-in;
+}
+
+.card_img {
+  border-radius: 1rem 1rem 1rem 1rem;
+  height: 150px;
+  object-fit: cover;
+  width: 100%;
+  margin: 1rem 1rem 0 0;}
+
+.pr_button {
+position: relative;
+top: -50px;
+left: 95%;
+background-color: #007bff;
+color: white;
+border: none;
+padding: 10px 15px;
+border-radius: 10px;
+}
+
+
+</style>
+
+
+
+<div class="container ">
+    <h1 class="text-center">Feed</h1>
+    <a class="pr_button btn btn-primary mb-4" href="{% url 'YTweet:tweet_create' %}">Create tweet</a>
+    <div class="container row gap-3 justify-content-evenly ">
+        {% for tweet in tweets %}
+        <div class="card" style="width: 18rem;">
+        <img src="{{tweet.photo.url}}" class="card_img card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{tweet.user.username}}</h5>
+            <p class="card-text">{{tweet.text}}</p>
+
+            {% if tweet.user == user %}
+            <a href="{% url 'YTweet:tweet_edit' tweet.id%}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'YTweet:tweet_delete' tweet.id%}" class="btn btn-danger">Delete</a>
+            {% endif %}
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

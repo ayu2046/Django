@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+YTweet - Home
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">!! Are You sure !!
+        You want to delete this tweet?
+    </h1>
+
+    <form  method="post">
+        <div class="button text-center mt-4 ">
+            <button class = "btn btn-danger m-3" type="submit">
+                {% csrf_token %}
+                Delete
+            </button>
+            <a href="{% url 'YTweet:tweet_list' %}" class="btn btn-secondary m-3">Cancel</a>
+        </div>
+    </form>
+    
+    
+{% endblock %}

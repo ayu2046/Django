@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: rgb(5, 0, 39);
+    /* background: url('/static/images/image.jpeg') no-repeat center center fixed; */
+    /* background-size: cover; */
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .welcome-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+  }
+
+  .glass-card {
+    position: relative;
+    max-width: 450px;
+    width: 90%;
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    background:transparent; 
+    box-shadow: 0 0 50px rgba(0, 255, 255, 0.08); /* soft teal glow */
+    color: white;
+    z-index: 1;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .rgb-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 1.5rem;
+    z-index: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    background: radial-gradient(circle at center, rgba(0,255,255,0.4), transparent 70%);
+  }
+
+  .glass-card * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .logo1 {
+    font-size: 4rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 6px rgba(0, 123, 255, 0.8);
+  }
+
+  .logo {
+    position: absolute;
+    top: 0.8rem;
+    left: 1.5rem;
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 6px rgba(0, 123, 255, 0.8);
+    z-index: 999;
+  }
+
+  .btn-rounded {
+    border-radius: 2rem;
+  }
+</style>
+
+
+<div class="logo">𝕐ʇǝǝʍ⊥</div>
+
+<div class="welcome-container" id="card-container">
+  <div class="glass-card text-center">
+    <div class="rgb-shadow" id="rgb-shadow"></div>
+
+    <div class="logo1 mb-3">𝕐</div>
+    <h2 class="mb-4 fw-bold">Create an account</h2>
+
+    <a href="{% url 'register' %}" class="btn btn-primary btn-rounded w-100 mb-3">Create account</a>
+
+    <small class="text-muted d-block mb-2">
+      By signing up, you agree to our Terms, Privacy, and Cookies.
+    </small>
+
+    <p class="mt-4 fw-bold">Already have an account?</p>
+    <a href="{% url 'login' %}" class="btn btn-light btn-rounded w-100">Sign in</a>
+  </div>
+</div>
+
+<script>
+  const card = document.getElementById('card-container');
+  const rgb = document.getElementById('rgb-shadow');
+
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    rgb.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(0,255,255,0.4), transparent 70%)`;
+  });
+</script>
+{% endblock %}
