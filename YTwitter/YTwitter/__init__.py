@@ -1,1 +1,0 @@
-from YTwitter import settings
