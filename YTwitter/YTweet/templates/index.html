@@ -8,8 +8,6 @@
     margin: 0;
     overflow: hidden;
     background: rgb(5, 0, 39);
-    /* background: url('/static/images/image.jpeg') no-repeat center center fixed; */
-    /* background-size: cover; */
     font-family: 'Segoe UI', sans-serif;
   }
 
@@ -19,16 +17,18 @@
     align-items: center;
     justify-content: center;
     perspective: 1000px;
+    margin-top: -75px; /* Adjusted for centering */
+    padding: 1rem;
   }
 
   .glass-card {
     position: relative;
     max-width: 450px;
-    width: 90%;
+    width: 100%;
     padding: 2.5rem;
     border-radius: 1.5rem;
-    background:transparent; 
-    box-shadow: 0 0 50px rgba(0, 255, 255, 0.08); /* soft teal glow */
+    background: transparent;
+    box-shadow: 0 0 50px rgba(0, 255, 255, 0.08);
     color: white;
     z-index: 1;
     transition: box-shadow 0.2s ease;
@@ -73,8 +73,31 @@
   .btn-rounded {
     border-radius: 2rem;
   }
-</style>
 
+  @media (max-width: 576px) {
+    .logo {
+      font-size: 2rem;
+      top: 0.5rem;
+      left: 1rem;
+    }
+
+    .logo1 {
+      font-size: 3rem;
+    }
+
+    .glass-card {
+      padding: 1.5rem;
+    }
+
+    .btn {
+      font-size: 0.95rem;
+    }
+
+    small.text-muted {
+      font-size: 0.75rem;
+    }
+  }
+</style>
 
 <div class="logo">𝕐ʇǝǝʍ⊥</div>
 

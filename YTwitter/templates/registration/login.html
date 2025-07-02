@@ -6,29 +6,30 @@
   html, body {
     height: 100%;
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden;
     background: rgb(5, 0, 39);
     font-family: 'Segoe UI', sans-serif;
   }
 
   .welcome-container {
-    height: 100vh;
-    width: 350vh;
+    min-height: 100vh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    perspective: 1000px;
-    margin-bottom: 75px;
+    padding: 2rem 1rem;
+    margin-top: -75px; /* Adjusted to center vertically */
+    box-sizing: border-box;
   }
 
   .glass-card {
     position: relative;
+    width: 100%;
     max-width: 450px;
-    width: 90%;
-    padding: 2.5rem;
+    padding: 2rem;
     border-radius: 1.5rem;
-    background:transparent; 
-    box-shadow: 0 0 50px rgba(0, 255, 255, 0.08); /* soft teal glow */
+    background: transparent;
+    box-shadow: 0 0 50px rgba(0, 255, 255, 0.08);
     color: white;
     z-index: 1;
     transition: box-shadow 0.2s ease;
@@ -52,22 +53,22 @@
     z-index: 2;
   }
 
+  .logo {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 6px rgba(0, 123, 255, 0.8);
+    z-index: 999;
+  }
+
   .logo1 {
     font-size: 4rem;
     font-weight: bold;
     color: white;
     text-shadow: 2px 2px 6px rgba(0, 123, 255, 0.8);
-  }
-
-  .logo {
-    position: absolute;
-    top: 0.8rem;
-    left: 1.5rem;
-    font-size: 3.5rem;
-    font-weight: bold;
-    color: white;
-    text-shadow: 2px 2px 6px rgba(0, 123, 255, 0.8); /* blue glow shadow */
-    z-index: 999;
   }
 
   .btn-rounded {
@@ -95,7 +96,7 @@
 
   .form-group input {
     width: 100%;
-    padding: 0.4rem;
+    padding: 0.5rem;
     border-radius: 0.5rem;
     border: none;
     background-color: #1c1c1c;
@@ -108,16 +109,60 @@
     background-color: #222;
   }
 
-  /* p.text-center a {
-    color: #00ffff;
-    text-decoration: none;
-  } */
+  .text-danger {
+    color: #ff6b6b;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+  }
 
-  /* p.text-center a:hover {
-    text-decoration: underline;
-  } */
+  @media (max-width: 768px) {
+    .logo {
+      font-size: 2.2rem;
+      left: 0.8rem;
+      top: 0.8rem;
+    }
 
+    .logo1 {
+      font-size: 3rem;
+    }
+
+    .glass-card {
+      padding: 1.5rem 1rem;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+    }
+
+    .btn-rounded {
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .logo {
+      font-size: 1.8rem;
+    }
+
+    .logo1 {
+      font-size: 2.5rem;
+    }
+
+    .btn-rounded {
+      font-size: 0.9rem;
+    }
+
+    .form-group input {
+      font-size: 0.9rem;
+      padding: 0.4rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+    }
+  }
 </style>
+
 
 <div class="logo">𝕐ʇǝǝʍ⊥</div>
 

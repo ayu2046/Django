@@ -10,7 +10,7 @@ YTweet - Home
     max-width: 450px;
     margin: 40px auto;
     padding: 30px;
-    background:transparent;
+    background: transparent;
     border-radius: 12px;
     backdrop-filter: blur(8px);
     color: white;
@@ -24,7 +24,8 @@ YTweet - Home
     color: #e3e6e6;
   }
 
-  .tweet-form-wrapper .form-group {
+  .tweet-form-wrapper .form-group,
+  .tweet-form-wrapper .form-check {
     margin-bottom: 1rem;
   }
 
@@ -69,18 +70,43 @@ YTweet - Home
     color: #0a84e8;
   }
 
-#photo-clear_id {
-display: none;
-}
+  #photo-clear_id {
+    display: none;
+  }
 
-label[for="photo-clear_id"] {
-  display: none;
-}
+  label[for="photo-clear_id"] {
+    display: none;
+  }
 
-#id_photo{
+  #id_photo {
     margin-top: 0.5rem;
-}
+  }
 
+  @media (max-width: 576px) {
+    .tweet-form-wrapper {
+      margin: 20px 16px;
+      padding: 20px;
+    }
+
+    .tweet-form-wrapper h2 {
+      font-size: 1.6rem;
+    }
+
+    .tweet-form-wrapper input,
+    .tweet-form-wrapper textarea {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .tweet-form-wrapper button {
+      font-size: 0.95rem;
+      padding: 0.5rem;
+    }
+
+    .tweet-form-wrapper label {
+      font-size: 0.9rem;
+    }
+  }
 </style>
 
 <div class="tweet-form-wrapper">
@@ -93,31 +119,28 @@ label[for="photo-clear_id"] {
   </h2>
 
   <form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
+    {% csrf_token %}
 
-  {% for field in form %}
-    {% if field.name != "clear" %}
-      <div class="{% if field.field.widget.input_type == 'checkbox' %}form-check{% else %}form-group{% endif %}">
-        {{ field.label_tag }}
-        {{ field }}
-        {% for error in field.errors %}
-          <div class="text-danger">{{ error }}</div>
-        {% endfor %}
+    {% for field in form %}
+      {% if field.name != "clear" %}
+        <div class="{% if field.field.widget.input_type == 'checkbox' %}form-check{% else %}form-group{% endif %}">
+          {{ field.label_tag }}
+          {{ field }}
+          {% for error in field.errors %}
+            <div class="text-danger">{{ error }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    {% if form.clear %}
+      <div style="display: none;">
+        {{ form.clear.as_widget }}
       </div>
     {% endif %}
-  {% endfor %}
 
-  {# Ensure this block does not render anything visible #}
-  {% if form.clear %}
-    <div style="display: none;">
-      {{ form.clear.as_widget }}
-    </div>
-  {% endif %}
-
-  <button class="btn btn-warning" type="submit">
-    Submit
-  </button>
-</form>
+    <button class="btn btn-warning" type="submit">Submit</button>
+  </form>
 
   <a href="{% url 'YTweet:tweet_list' %}" class="back-link"><u>Back to Tweet list</u></a>
 </div>

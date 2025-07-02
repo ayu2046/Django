@@ -5,6 +5,12 @@
       backdrop-filter: blur(10px);
       border-top: 1px solid white;
       padding-bottom: 1rem;
+      position: relative;
+    }
+
+    .footer-links {
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .footer-links a {
@@ -12,6 +18,7 @@
       margin: 0 10px;
       text-decoration: none;
       font-size: 0.9rem;
+      white-space: nowrap;
     }
 
     .footer-links a:hover {
@@ -53,18 +60,40 @@
       font-size: 0.85rem;
       margin-top: 10px;
     }
+
+    @media (max-width: 576px) {
+      .footer-links a {
+        font-size: 0.8rem;
+        margin: 5px;
+      }
+
+      .social-icons i {
+        font-size: 1.4rem;
+        margin: 8px;
+      }
+
+      .logo {
+        font-size: 1.6rem;
+        top: 0.5rem;
+        left: 1rem;
+      }
+
+      .footer-bottom {
+        font-size: 0.75rem;
+      }
+    }
   </style>
 
   <div class="container text-center">
     <div class="logo">𝕐ʇǝǝʍ⊥</div>
     <div class="row justify-content-center">
-      <div class="col-md-12 mb-2 social-icons">
+      <div class="col-md-12 mb-2 social-icons d-flex justify-content-center flex-wrap">
         <a href="https://github.com/ayu2046" target="_blank"><i class="bi bi-github"></i></a>
         <a href="https://www.linkedin.com/in/ayush-awasthi-031437219/" target="_blank"><i class="bi bi-linkedin"></i></a>
         <a href="https://www.instagram.com/_ayu_2046/" target="_blank"><i class="bi bi-instagram"></i></a>
       </div>
 
-      <div class="col-md-12 footer-links">
+      <div class="col-md-12 footer-links d-flex">
         <a href="#">Terms And Conditions</a>
         <a href="#">Privacy Policy</a>
         <a href="#">Refund Policy</a>

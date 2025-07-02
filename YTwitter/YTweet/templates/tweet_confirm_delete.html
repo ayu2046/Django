@@ -5,20 +5,62 @@ YTweet - Home
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h1 class="text-center">!! Are You sure !!
-        You want to delete this tweet?
-    </h1>
+<style>
+  .delete-container {
+    max-width: 700px;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: transparent;
+    border-radius: 1rem;
+    backdrop-filter: blur(8px);
+    color: white;
+    box-shadow: 0 0 12px rgba(255, 0, 0, 0.15);
+    text-align: center;
+  }
 
-    <form  method="post">
-        <div class="button text-center mt-4 ">
-            <button class = "btn btn-danger m-3" type="submit">
-                {% csrf_token %}
-                Delete
-            </button>
-            <a href="{% url 'YTweet:tweet_list' %}" class="btn btn-secondary m-3">Cancel</a>
-        </div>
-    </form>
-    
-    
+  .delete-container h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    line-height: 1.4;
+  }
+
+  .delete-container .btn {
+    min-width: 120px;
+    padding: 0.6rem 1.2rem;
+  }
+
+  @media (max-width: 576px) {
+    .delete-container {
+      margin: 30px 15px;
+      padding: 20px;
+    }
+
+    .delete-container h1 {
+      font-size: 1.5rem;
+    }
+
+    .delete-container .btn {
+      width: 100%;
+      margin: 0.5rem 0;
+    }
+
+    .button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+
+<div class="container delete-container">
+  <h1>!! Are You Sure !!<br>You want to delete this tweet?</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="button mt-4">
+      <button class="btn btn-danger m-2" type="submit">Delete</button>
+      <a href="{% url 'YTweet:tweet_list' %}" class="btn btn-secondary m-2">Cancel</a>
+    </div>
+  </form>
+</div>
 {% endblock %}
